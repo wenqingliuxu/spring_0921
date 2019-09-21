@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.hellojava">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+
+    <mvc:annotation-driven/>
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+
+<!--    <mvc:resources mapping="bootstrap/css/**" location="/resources/bootstrap/css/"></mvc:resources>-->
+<!--    <mvc:resources mapping="bootstrap/fonts/**" location="/resources/bootstrap/fonts/"></mvc:resources>-->
+<!--    <mvc:resources mapping="bootstrap/js/**" location="/resources/bootstrap/js/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/css/**" location="/resources/css/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/fonts/**" location="/resources/fonts/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/ztree/**" location="/resources/ztree/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/jquery/**" location="/resources/jquery/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/js/**" location="/resources/js/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/script/**" location="/resources/script/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/ztree/img/**" location="/resources/ztree/img/"></mvc:resources>-->
+<!--    <mvc:resources mapping="/img/**" location="/resources/img/"></mvc:resources>-->
+    <!--thymeleaf 模板-->
+    <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
+<!--        <property name="prefix" value=".html"></property>-->
+        <property name="suffix" value=".html"></property>
+        <property name="characterEncoding" value="UTF-8"></property>
+        <property name="templateMode" value="HTML"></property>
+    </bean>
+
+    <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"></property>
+    </bean>
+
+    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"></property>
+        <property name="characterEncoding" value="UTF-8"></property>
+    </bean>
+</beans>

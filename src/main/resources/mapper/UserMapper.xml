@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellojava.dao.IUserDao">
+    <select id="loadAll" resultType="user">
+        select * from users
+    </select>
+    <delete id="delete" parameterType="int">
+        delete from users where user_id=#{id}
+    </delete>
+    <select id="loadById" resultType="user" parameterType="int">
+        select * from users where user_id=#{id}
+    </select>
+    <update id="update" parameterType="user">
+        update users set userName=#{userName},password=#{password},age=#{age},birthday=#{birthday},address=#{address}
+    </update>
+    <insert id="add" parameterType="user">
+        insert into users(userName,password,age,birthday,address) values(#{userName},#{password},#{age},#{birthday},#{address})
+    </insert>
+<!--    <select id="loadUser" resultType="user" parameterType="user">-->
+<!--        select * from users where userName=#{userName} and userPwd=#{userPwd}-->
+<!--    </select>-->
+<!--    <select id="yzUserType" resultType="Integer" parameterType="String">-->
+<!--        select tr.roleId-->
+<!--        from users u,user_role_mapping urm,tb_role tr-->
+<!--        where u.userId=urm.uid and urm.rid=tr.roleId and u.userName=#{userName}-->
+<!--    </select>-->
+<!--    <select id="loadAll" resultType="user" parameterType="user">-->
+<!--        select * from users-->
+<!--    </select>-->
+<!--    <select id="getTotalCount" resultType="int" parameterType="user">-->
+<!--        select count(userId) from users-->
+<!--    </select>-->
+
+<!--    <select id="moHuChaXun" resultType="user">-->
+<!--        select * from users where userName like '%' #{userName} '%'-->
+<!--    </select>-->
+<!--    <insert id="save" parameterType="user">-->
+<!--        insert into users values(#{userId},#{userName},#{userPwd},#{userEmail})-->
+<!--    </insert>-->
+<!--    <delete id="delete" parameterType="list">-->
+<!--        delete from users-->
+<!--        <where>-->
+<!--            userId in-->
+<!--            <foreach collection="list" item="b" separator="," open="(" close=")">-->
+<!--            #{b}-->
+<!--            </foreach>-->
+<!--        </where>-->
+<!--    </delete>-->
+<!--    <delete id="deleterid" parameterType="list">-->
+<!--        delete from user_role_mapping-->
+<!--        <where>-->
+<!--            uid in-->
+<!--            <foreach collection="list" item="b" separator="," open="(" close=")">-->
+<!--                #{b}-->
+<!--            </foreach>-->
+<!--        </where>-->
+<!--    </delete>-->
+<!--    <delete id="deletepl" parameterType="list">-->
+<!--        delete from users-->
+<!--        <where>-->
+<!--            userId in-->
+<!--            <foreach collection="list" item="uid" separator="," open="(" close=")">-->
+<!--                #{uid}-->
+<!--            </foreach>-->
+<!--        </where>-->
+<!--    </delete>-->
+<!--    <select id="loadById" resultType="user" parameterType="int">-->
+<!--        select * from users where userId=#{userId}-->
+<!--    </select>-->
+<!--    <update id="update" parameterType="user">-->
+<!--        update users set userName=#{userName},userPwd=#{userPwd},userEmail=#{userEmail} where userId=#{userId}-->
+<!--    </update>-->
+<!--    <select id="getMaxUserId" resultType="int">-->
+<!--        select max(userId) from users-->
+<!--    </select>-->
+<!--   &lt;!&ndash; <insert id="rid">-->
+<!--        insert into user_role_mapping values(#{uid},#{userType})-->
+<!--    </insert>&ndash;&gt;-->
+<!--    <insert id="rid">-->
+<!--        insert into user_role_mapping values(#{uid},1)-->
+<!--    </insert>-->
+</mapper>
