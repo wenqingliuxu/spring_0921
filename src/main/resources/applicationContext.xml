@@ -11,7 +11,7 @@
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler></mvc:default-servlet-handler>
     <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
-<!--        <property name="prefix" value=".html"></property>-->
+        <property name="prefix" value="/WEB-INF/views/"></property>
         <property name="suffix" value=".html"></property>
         <property name="characterEncoding" value="UTF-8"></property>
     </bean>

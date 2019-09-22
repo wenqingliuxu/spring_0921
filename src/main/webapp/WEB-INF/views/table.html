@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="utf-8" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<title>Tables - Ace Admin</title>
+
+	<meta name="description" content="演示模板" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<!-- bootstrap & fontawesome -->
+	<link rel="stylesheet" href="resource/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="resource/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+	<!-- page specific plugin styles -->
+
+	<!-- text fonts -->
+	<link rel="stylesheet" href="resource/css/fonts.googleapis.com.css" />
+
+	<!-- ace styles -->
+	<link rel="stylesheet" href="resource/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+	<!--[if lte IE 9]>
+	<link rel="stylesheet" href="resource/css/ace-part2.min.css" class="ace-main-stylesheet"/>
+	<![endif]-->
+	<link rel="stylesheet" href="resource/css/ace-skins.min.css" />
+	<link rel="stylesheet" href="resource/css/ace-rtl.min.css" />
+
+	<link rel="stylesheet" href="resource/css/search-style.css" />
+
+	<!--[if lte IE 9]>
+	<link rel="stylesheet" href="resource/css/ace-ie.min.css"/>
+	<![endif]-->
+
+	<!-- inline styles related to this page -->
+
+	<!-- ace settings handler -->
+	<script src="resource/js/ace-extra.min.js"></script>
+
+
+	<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+	<!--[if lte IE 8]>
+	<script src="resource/js/html5shiv.min.js"></script>
+	<script src="resource/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body class="no-skin">
+
+
+<div class="main-container ace-save-state" id="main-container">
+	<script type="text/javascript">
+		try {
+			ace.settings.loadState('main-container')
+		} catch(e) {}
+	</script>
+
+
+	<div class="main-content">
+		<div class="main-content-inner">
+			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li><i class="ace-icon fa fa-home home-icon"></i>
+						<a href="#">首页</a>
+					</li>
+
+					<li>
+						<a href="#">案例</a>
+					</li>
+					<li class="active">表格</li>
+				</ul>
+				<!-- /.breadcrumb -->
+			</div>
+
+			<!-- PAGE CONTENT BEGINS -->
+			<div class="page-content">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<!-- 标题 -->
+						<div class="row">
+							<div class="col-md-12">
+								<h4 style="margin-bottom:0px;padding-bottom:10px;border-bottom: 1px solid #e3e3e3;">信息列表</h4>
+							</div>
+						</div>
+						<!--查询条件,每行查询条件放入select-group中-->
+						<div class="row">
+							<div class="col-md-12">
+								<div class="push-up-15 select-op-1">
+									<div class="select-options">
+										<div style="width: 100%;" class="select-group ">
+											<div class="col-md-4 ">
+												<span class="spanlable">姓名：</span>
+												<div style="width: 100%;margin: 2px 0 1px">
+													<input type="text" class="form-control input-sm" placeholder="请输入名字">
+												</div>
+											</div>
+										</div>
+										<div style="width: 100%;margin-top: 8px;" class="select-group ">
+											<div class="col-md-8">
+												<span class="spanlable">起止时间：</span>
+												<div class="select-time">
+													<div class="input-group">
+														<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+														<input type="text" class="form-control input-sm" name="startDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+													</div>
+												</div>
+												<span class="select-to">至</span>
+												<div class="select-time">
+													<div class="input-group">
+														<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+														<input type="text" class="form-control input-sm" name="endDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="select-btn-box">
+										<button id="search" class="btn  btn-sm btn-inverse  left" style="border-radius: 4px;margin-right:10px">搜索</button>
+										<button class="btn  btn-sm btn-light left" style="border-radius: 4px">清空</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="link_btn_bar " style="width:auto!important;" id="actionBtn">
+									<div class="swiper-wrapper" style="width: auto !important; transform: translate3d(0px, 0px, 0px);">
+
+										<a href="#" class="link_btn" id="delRecord" style="text-decoration:none"><i class="fa fa-trash-o" aria-hidden="true"></i>批量删除
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="table-responsive">
+									<table id="simple-table" class="table table-bordered table-hover table-condensed">
+										<thead>
+										<tr>
+											<th class="center"><label> <input type="checkbox"
+																			  class="ace" /> <span class="lbl"></span>
+											</label></th>
+											<th class="center">ID</th>
+											<th class="center">姓名</th>
+											<th class="center">密码</th>
+											<th class="center">年龄</th>
+											<th class="center">生日</th>
+											<th class="center">籍贯</th>
+											<th class="center" width="100px">操作</th>
+
+										</tr>
+										</thead>
+										<tbody>
+											<tr th:each="b:${users}">
+												<td class="center">
+													<label> <input type="checkbox" class="ace" th:value="${b.user_id}"/> <span class="lbl"></span></label>
+												</td>
+
+												<td th:text="${b.user_id}" align="center"></td>
+												<td th:text="${b.userName}" align="center"></td>
+												<td th:text="${b.password}" align="center"></td>
+												<td th:text="${b.age}" align="center"></td>
+												<td th:text="${b.birthday}" align="center"></td>
+												<td th:text="${b.address}" align="center"></td>
+												<td>
+													<a th:href="@{delete(user_id=${b.user_id})}"  class="btn btn-danger btn-xs" align="center"><i class="  glyphicon glyphicon-remove"></i></a>
+													<a th:href="@{loadById(user_id=${b.user_id})}"  class="btn btn-primary btn-xs" align="center"><i class=" glyphicon glyphicon-pencil"></i></a>
+												</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+								<!-- /.table-responsive -->
+							</div>
+							<!-- /span -->
+						</div>
+						<!-- /row -->
+						<!-- 分页 -->
+						<div class="row">
+							<div class="col-md-2">当前第 1 - 2 条 共计 2 条</div>
+
+							<div class="col-md-10">
+								<ul class="pagination pagination-sm pull-right" style="margin: 0px;">
+									<li>
+										<a href="#">首页</a>
+									</li>
+									<li class="previous">
+										<a href="#">上一页</a>
+									</li>
+									<li>
+										<a href="#">1</a>
+									</li>
+									<li>
+										<a href="#">2</a>
+									</li>
+									<li>
+										<a href="#">3</a>
+									</li>
+									<li>
+										<a href="#">4</a>
+									</li>
+									<li>
+										<a href="#">5</a>
+									</li>
+									<li class="next">
+										<a href="#">下一页</a>
+									</li>
+									<li class="disabled">
+										<a href="#">尾页</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- panel end -->
+			</div>
+			<!-- PAGE CONTENT END -->
+		</div>
+		<!-- main-content-inner END -->
+	</div>
+
+</div>
+<!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="resource/js/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="resource/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+
+<script src="resource/js/bootstrap.min.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="resource/plugin/My97DatePicker/WdatePicker.js"></script>
+<script src="resource/plugin/layer/layer.js"></script>
+
+<!-- ace scripts -->
+<script src="resource/js/ace-elements.min.js"></script>
+<script src="resource/js/ace.min.js"></script>
+
+
+<!-- inline scripts related to this page -->
+
+</body>
+
+</html>

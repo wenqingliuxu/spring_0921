@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>Tables - Ace Admin</title>
+
+    <meta name="description" content="演示模板" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="resource/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="resource/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- page specific plugin styles -->
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="resource/css/fonts.googleapis.com.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="resource/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="resource/css/ace-part2.min.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="resource/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="resource/css/ace-rtl.min.css" />
+
+    <link rel="stylesheet" href="resource/css/search-style.css" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="resource/css/ace-ie.min.css"/>
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+    <script src="resource/js/ace-extra.min.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="resource/js/html5shiv.min.js"></script>
+    <script src="resource/js/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .form-table div[class*="col-"] input,
+        .rowhead {
+            border-bottom: 2px dotted #e3e3e3;
+            border-top-width: 0px;
+            border-left-width: 0px;
+            border-right-width: 0px;
+        }
+
+        .form-table div[class*="col-"] .rowhead {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="no-skin">
+
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.loadState('main-container')
+        } catch(e) {}
+    </script>
+
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="#">首页</a>
+                    </li>
+
+                    <li>
+                        <a href="#">案例</a>
+                    </li>
+                    <li class="active">个人信息</li>
+                </ul>
+                <!-- /.breadcrumb -->
+            </div>
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="page-content">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- 标题 -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 style="margin-bottom:0px;padding-bottom:10px;border-bottom: 1px solid #e3e3e3;">信息列表</h4>
+                            </div>
+                        </div>
+                        <form class="form-horizontal" role="form" action="updateuser" enctype="multipart/form-data" style="padding-top:10px ;">
+                            <input type="hidden" id="user_id" name="user_id" th:value="${user.user_id}"/>
+                            <div class="row ">
+                                <div class="col-md-5" >
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="userName"> 用户名:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="userName" name="userName"  th:value="${user.userName}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="password"> 密码:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="password" name="password" th:value="${user.password}" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="age"> 年龄:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="age" name="age" th:value="${user.age}" />
+                                        </div>
+                                    </div>
+<!--                                    <div class="form-group">-->
+<!--                                        <label class="col-sm-3 control-label" for="birthday"> 生日:</label>-->
+<!--                                        <div class="col-sm-9">-->
+<!--                                            <input type="text" class="form-control"  id="birthday" name="birthday" th:value="${user.birthday}" />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="address"> 籍贯:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="address" name="address" th:value="${user.address}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <div class="col-sm-2" style="margin-left: calc((75% - 10px) / 2)">
+                                                <input type="submit" class="btn  btn-sm btn-inverse " style="border-radius: 4px;padding-left:20px;padding-right:20px;float: right"></input>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <input type="reset" class="btn  btn-sm btn-light " style="border-radius: 4px"></input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

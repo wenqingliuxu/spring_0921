@@ -27,7 +27,7 @@
 <!--    <mvc:resources mapping="/img/**" location="/resources/img/"></mvc:resources>-->
     <!--thymeleaf 模板-->
     <bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
-<!--        <property name="prefix" value=".html"></property>-->
+        <property name="prefix" value="/WEB-INF/views/"></property>
         <property name="suffix" value=".html"></property>
         <property name="characterEncoding" value="UTF-8"></property>
         <property name="templateMode" value="HTML"></property>

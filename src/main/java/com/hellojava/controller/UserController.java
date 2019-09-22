@@ -4,7 +4,11 @@ import com.hellojava.business.IUserService;
 import com.hellojava.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @author 刘旭
@@ -22,10 +26,38 @@ public class UserController {
     public String rgst(){
         return "form";
     }
-    @RequestMapping("add")
-    public String add(User user){
-        userService.add(user);
-        System.out.println("+++++++++++++++++++"+user);
+    @RequestMapping("showusers")
+    public String showusers(Model model){
+        List<User> users = userService.loadAll();
+        model.addAttribute("users",users);
+
         return "table";
+    }
+    @RequestMapping("add")
+    public String add(User user,Model model){
+        userService.add(user);
+
+        List<User> users = userService.loadAll();
+        model.addAttribute("users",users);
+
+        return "table";
+    }
+    @RequestMapping("delete")
+    public String delete(@RequestParam("user_id") int id,Model model){
+        userService.delete(id);
+        List<User> users = userService.loadAll();
+        model.addAttribute("users",users);
+        return "table";
+    }
+    @RequestMapping("loadById")
+    public String loadById(@RequestParam("user_id") int id,Model model){
+        User user = userService.loadById(id);
+        model.addAttribute(user);
+        return "singleform";
+    }
+    @RequestMapping("updateuser")
+    public String update(User user,Model model){
+        userService.update(user);
+        return "redirect:showusers";
     }
 }
