@@ -32,4 +32,5 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
         <property name="basePackage" value="com.hellojava.dao"></property>
     </bean>
+
 </beans>

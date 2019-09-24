@@ -17,4 +17,13 @@
     <insert id="add" parameterType="user">
         insert into users(userName,password,age,birthday,address) values(#{userName},#{password},#{age},#{birthday},#{address})
     </insert>
+    <delete id="deletepl" parameterType="list">
+        delete from users
+        <where>
+            user_id in
+            <foreach collection="list" item="ids" separator="," open="(" close=")">
+                #{ids}
+            </foreach>
+        </where>
+    </delete>
 </mapper>

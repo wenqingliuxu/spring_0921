@@ -7,7 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -57,7 +61,30 @@ public class UserController {
     }
     @RequestMapping("updateuser")
     public String update(User user,Model model){
+        System.out.println("+++++++++++++++++++++"+user);
         userService.update(user);
+        return "redirect:showusers";
+    }
+    @RequestMapping("plshanchu")
+    public String deletepl(@RequestParam("ids") List<Integer> ids){
+        System.out.println("+++++++++++++++++++++++++++++++"+ids);
+        userService.deletepl(ids);
+        return "redirect:showusers";
+    }
+    @RequestMapping("uploadview")
+    public String uploadview(){
+        return "upload";
+    }
+    @RequestMapping("uploadtest")
+    public String upload(@RequestParam("file") MultipartFile file, Model model, HttpSession session){
+        model.addAttribute("sessionTest","test");
+        System.out.println("上传的文件是："+file.getOriginalFilename());
+
+        try {
+            file.transferTo(new File("f:/"+file.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "redirect:showusers";
     }
 }

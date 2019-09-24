@@ -42,4 +42,9 @@ public class UserService implements IUserService {
     public void add(User user) {
         userDao.add(user);
     }
+
+    @Override
+    public void deletepl(List<Integer> ids) {
+        userDao.deletepl(ids);
+    }
 }

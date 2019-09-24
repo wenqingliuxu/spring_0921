@@ -15,5 +15,5 @@ public interface IUserService {
     public User loadById(int id);
     public void update(User user);
     public void add(User user);
-
+    public void deletepl(List<Integer> ids);
 }
